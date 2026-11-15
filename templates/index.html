@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="LAN HUB — інтерактивний локальний сайт на Flask">
+  <title>LAN HUB — зв'язок без меж</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="LAN HUB — на головну">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>LAN<span class="brand-accent">HUB</span><small> LOCAL EXPERIENCE</small></span>
+      </a>
+      <div class="header-right">
+        <span class="desktop-chip">FLASK / SQLITE / JS</span>
+        <span class="live-chip"><span class="live-dot" id="connection-dot"></span><span id="connection-text">Підключення...</span></span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> ПРОЄКТ ДЛЯ ОДНІЄЇ WI-FI МЕРЕЖІ <span class="tiny-star">✦</span></div>
+          <h1>Один Wi-Fi.<br><span class="gradient-text">Безліч екранів.</span></h1>
+          <p class="hero-text">Місце, де твій комп’ютер і телефон працюють разом. Пиши повідомлення, голосуй та спостерігай, як усе синхронізується в реальному часі.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#chat">Спробувати чат <span aria-hidden="true">↗</span></a>
+            <a class="secondary-button" href="#poll">Проголосувати <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-stats">
+            <div><strong id="online-count">—</strong><span>пристроїв онлайн</span></div>
+            <div class="stat-divider"></div>
+            <div><strong>2.5s</strong><span>оновлення даних</span></div>
+            <div class="stat-divider"></div>
+            <div><strong>100%</strong><span>локально</span></div>
+          </div>
+        </div>
+        <div class="visual-card" aria-label="Візуалізація підключених пристроїв">
+          <div class="visual-head"><span><span class="small-square"></span> NETWORK OVERVIEW</span><span class="visual-badge">ACTIVE</span></div>
+          <div class="network-visual">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+            <div class="center-node"><svg viewBox="0 0 32 32" width="40" height="40" fill="none" aria-hidden="true"><path d="M5 9h22v14H5z" stroke="currentColor" stroke-width="2" rx="2"/><path d="M11 28h10M16 23v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 14h12M10 18h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <div class="device-node phone-node">▯</div>
+            <div class="device-node tablet-node">◈</div>
+            <div class="orbit-point"></div>
+          </div>
+          <div class="visual-bottom"><span><span class="pulse-dot"></span> LIVE CONNECTION</span><span>LAN://5000</span></div>
+        </div>
+      </section>
+
+      <section class="feature-label"><span>01 / ІНТЕРАКТИВНА ЗОНА</span><span>ВСЕ ПРАЦЮЄ НА FLASK <span class="arrow-symbol">↗</span></span></section>
+      <section class="dashboard">
+        <article class="panel chat-panel" id="chat">
+          <div class="panel-header">
+            <div><div class="panel-kicker">SHARED SPACE</div><h2>Спільний чат <span class="heading-emoji">💬</span></h2><p>Повідомлення видно на всіх пристроях</p></div>
+            <div class="panel-icon" aria-hidden="true">↗</div>
+          </div>
+          <div class="chat-feed" id="chat-feed" aria-live="polite"><div class="loading-state">Завантажуємо повідомлення...</div></div>
+          <form id="chat-form" class="chat-form">
+            <label class="input-label" for="nickname">Твоє ім’я</label>
+            <input id="nickname" name="nickname" class="name-input" type="text" minlength="2" maxlength="26" placeholder="Наприклад, Pavlo" required autocomplete="nickname">
+            <label class="input-label" for="message">Повідомлення</label>
+            <div class="message-row"><input id="message" name="message" class="message-input" type="text" maxlength="240" placeholder="Напиши щось зі смартфона..." required autocomplete="off"><button id="send-button" type="submit" aria-label="Надіслати повідомлення">➤</button></div>
+            <div class="form-hint">ENTER — надіслати <span>Макс. 240 символів</span></div>
+          </form>
+        </article>
+
+        <div class="side-panels">
+          <article class="panel poll-panel" id="poll">
+            <div class="panel-kicker">COMMUNITY VOTE</div>
+            <h2>Вирішуємо разом <span class="heading-emoji">⚡</span></h2>
+            <p class="poll-question">Що додамо на сайт наступним?</p>
+            <div class="poll-options" id="poll-options">
+              <button class="poll-option" data-choice="light" type="button"><span class="poll-title">☀️ &nbsp;Світлу тему</span><span class="poll-meta"><span class="vote-count">0</span> голосів</span><span class="poll-track"><span class="poll-fill"></span></span></button>
+              <button class="poll-option" data-choice="game" type="button"><span class="poll-title">🎮 &nbsp;Мінігру</span><span class="poll-meta"><span class="vote-count">0</span> голосів</span><span class="poll-track"><span class="poll-fill"></span></span></button>
+              <button class="poll-option" data-choice="ai" type="button"><span class="poll-title">🤖 &nbsp;AI-помічника</span><span class="poll-meta"><span class="vote-count">0</span> голосів</span><span class="poll-track"><span class="poll-fill"></span></span></button>
+            </div>
+            <div class="poll-footer"><span id="vote-total">0 голосів загалом</span><span>Можна змінити вибір</span></div>
+          </article>
+          <article class="panel reaction-panel">
+            <div class="reaction-top"><div><div class="panel-kicker">GOOD VIBES ONLY</div><h2>Залиш реакцію</h2></div><span class="reaction-decoration">✳</span></div>
+            <div class="reactions" id="reactions">
+              <button class="reaction" type="button" data-emoji="🔥" aria-label="Реакція вогонь"><span>🔥</span><b>0</b></button>
+              <button class="reaction" type="button" data-emoji="🚀" aria-label="Реакція ракета"><span>🚀</span><b>0</b></button>
+              <button class="reaction" type="button" data-emoji="💜" aria-label="Реакція серце"><span>💜</span><b>0</b></button>
+              <button class="reaction" type="button" data-emoji="👏" aria-label="Реакція оплески"><span>👏</span><b>0</b></button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="bottom-strip"><span><span class="bottom-sparkle">✦</span> ЗРОБЛЕНО НА PYTHON + FLASK</span><span>ОДНА МЕРЕЖА. ОДИН ПРОСТІР. <span class="arrow-symbol">↗</span></span></section>
+    </main>
+    <footer><span>© LAN HUB — локальний демопроєкт</span><span>BUILD 001 · NO CLOUD REQUIRED</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
